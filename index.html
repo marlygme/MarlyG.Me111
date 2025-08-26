@@ -37,11 +37,20 @@ a[target="_blank"]:after {
   const observer = new MutationObserver(function(mutations) {
     document.querySelectorAll('a[target="_blank"], a[target=_blank]').forEach(link => {
       link.removeAttribute('target');
-      link.onclick = function(e) {
-        e.preventDefault();
-        window.location.href = this.href;
-        return false;
-      };
+      // Special handling for projects links
+      if (link.href && (link.href.includes('/projects') || link.textContent.toLowerCase().includes('tools'))) {
+        link.onclick = function(e) {
+          e.preventDefault();
+          window.location.href = this.href.replace(/^https?:\/\/[^\/]+/, '') || '/projects';
+          return false;
+        };
+      } else {
+        link.onclick = function(e) {
+          e.preventDefault();
+          window.location.href = this.href;
+          return false;
+        };
+      }
     });
   });
   

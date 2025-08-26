@@ -1,7 +1,4 @@
-# Cloudflare Pages SPA routing configuration
-# All routes should be handled by index.html for proper SPA functionality
-
-# Static assets - serve directly
+# Static assets - serve directly without redirect
 /dist/* 200
 /img/* 200
 /videos/* 200
@@ -10,19 +7,17 @@
 /favicon.ico 200
 /sorry.html 200
 
-# SPA routes - all page navigation should serve index.html
-/about/* /index.html 200
+# SPA routes - serve index.html for all page navigation
 /about /index.html 200
-/webdesign/* /index.html 200
+/about/* /index.html 200
 /webdesign /index.html 200
-/projects/* /index.html 200
+/webdesign/* /index.html 200
 /projects /index.html 200
-/projects/radio/* /index.html 200
-/projects/radio /index.html 200
-/graphic/* /index.html 200
+/projects/* /index.html 200
 /graphic /index.html 200
-/faq/* /index.html 200
+/graphic/* /index.html 200
 /faq /index.html 200
+/faq/* /index.html 200
 
-# Root and all other routes - serve index.html for SPA routing
+# Catch-all fallback for SPA routing
 /* /index.html 200
