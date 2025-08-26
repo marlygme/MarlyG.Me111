@@ -1,4 +1,4 @@
-import{a,b as e}from"https://st-p.rmcdn1.net/9abcafdf/dist/c/c-DVMYMT6O.js";import{a as t}from"https://st-p.rmcdn1.net/9abcafdf/dist/c/c-4XCUMATV.js";var s,d=t(()=>{"use strict";e();s={"template-constructor-block-facebook-type_like_button":a`
+import{a,b as e}from"dist/c/c-DVMYMT6O.js";import{a as t}from"dist/c/c-4XCUMATV.js";var s,d=t(()=>{"use strict";e();s={"template-constructor-block-facebook-type_like_button":a`
 	<div class="fb-like fb" data-href="<%-data.url ? data.url : 'http://readymag.com'%>" <%=data.share_button || data.send_button ? 'data-share="true"' : ''%> data-width="<%=data.w%>" data-show-faces="<%=data.show_faces%>" data-colorscheme="<%=data.theme%>" data-layout="<%=data.layout%>" data-type="data.type_like_button"></div>
 	<div class="overlay"></div>
 `,"template-constructor-block-facebook-type_page":a`

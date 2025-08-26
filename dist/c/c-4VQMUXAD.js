@@ -1,4 +1,4 @@
-import{a as s,b as I}from"https://st-p.rmcdn1.net/9abcafdf/dist/c/c-DVMYMT6O.js";import{q as g,r as P}from"https://st-p.rmcdn1.net/9abcafdf/dist/c/c-IKWSEEIB.js";import{a as W}from"https://st-p.rmcdn1.net/9abcafdf/dist/c/c-B3GKQWCL.js";import{a as k}from"https://st-p.rmcdn1.net/9abcafdf/dist/c/c-I7NIUV5Z.js";import{b as O}from"https://st-p.rmcdn1.net/9abcafdf/dist/c/c-XIJYJD2D.js";import{a as n,d as b}from"https://st-p.rmcdn1.net/9abcafdf/dist/c/c-4XCUMATV.js";var h,m=n(()=>{"use strict";I();h={"template-common-hotspot-widget":s`
+import{a as s,b as I}from"dist/c/c-DVMYMT6O.js";import{q as g,r as P}from"dist/c/c-IKWSEEIB.js";import{a as W}from"dist/c/c-B3GKQWCL.js";import{a as k}from"dist/c/c-I7NIUV5Z.js";import{b as O}from"dist/c/c-XIJYJD2D.js";import{a as n,d as b}from"dist/c/c-4XCUMATV.js";var h,m=n(()=>{"use strict";I();h={"template-common-hotspot-widget":s`
 
     <div class="common-hotspot">
       <div class="pin"></div>

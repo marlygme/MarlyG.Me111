@@ -1,4 +1,4 @@
-# Cloudflare Pages redirects - MINIMAL configuration
+# Cloudflare Pages redirects - Force single page behavior
 # Static files serve directly
 /dist/* 200
 /img/* 200  
@@ -7,12 +7,13 @@
 /sitemap.xml 200
 /favicon.ico 200
 
-# SPA routing - serve index.html for page routes only
-/projects /index.html 200
-/about /index.html 200
-/webdesign /index.html 200
-/graphic /index.html 200
-/faq /index.html 200
+# Handle all routes through index.html for SPA
+/projects /index.html 200!
+/about /index.html 200!
+/webdesign /index.html 200!
+/graphic /index.html 200!
+/faq /index.html 200!
+/tools /index.html 200!
 
-# Root fallback only
-/ /index.html 200
+# Catch-all for any other routes (including #hash routes)
+/* /index.html 200!
