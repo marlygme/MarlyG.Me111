@@ -1,0 +1,17 @@
+# Cloudflare Pages SPA routing configuration
+# All routes should be handled by index.html for proper SPA functionality
+
+# Static assets - serve directly
+/dist/* 200
+/img/* 200
+/videos/* 200
+/robots.txt 200
+/sitemap.xml 200
+/favicon.ico 200
+/sorry.html 200
+
+# API routes (if any) - add specific routes here
+# /api/* 200
+
+# All other routes - serve index.html for SPA routing
+/* /index.html 200

@@ -1,0 +1,29 @@
+# Updated .htaccess for local hosting compatibility
+# Note: This file is for Apache servers, Cloudflare Pages uses _redirects instead
+
+Options FollowSymLinks SymLinksIfOwnerMatch
+AddDefaultCharset utf-8
+
+# MIME Type definitions
+AddType application/vnd.ms-fontobject eot
+AddType font/opentype otf
+AddType font/truetype ttf
+AddType application/font-woff woff
+AddType video/webm webm
+
+RewriteEngine On
+RewriteBase /
+
+# Handle static assets - serve directly
+RewriteCond %{REQUEST_URI} ^/(dist|img|videos)/
+RewriteRule .* - [L]
+
+# Handle root path
+RewriteCond %{REQUEST_URI} ^/?$
+RewriteRule ^/?$ index.html [QSA,L]
+
+# SPA routing - all other requests serve index.html
+RewriteCond %{REQUEST_URI} !^/(dist|img|videos)/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* index.html [QSA,L]
