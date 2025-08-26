@@ -22,6 +22,10 @@ a[target="_blank"]:after {
   
   // Override window.open to prevent new tabs
   window.open = function(url, target, features) {
+    if (url && url.includes('/projects')) {
+      window.location.href = url;
+      return window;
+    }
     if (url) {
       window.location.href = url;
       return window;
