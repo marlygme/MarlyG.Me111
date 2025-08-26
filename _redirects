@@ -1,23 +1,18 @@
-# Static assets - serve directly without redirect
+# Cloudflare Pages redirects - MINIMAL configuration
+# Static files serve directly
 /dist/* 200
-/img/* 200
+/img/* 200  
 /videos/* 200
 /robots.txt 200
 /sitemap.xml 200
 /favicon.ico 200
-/sorry.html 200
 
-# SPA routes - serve index.html for all page navigation
-/about /index.html 200
-/about/* /index.html 200
-/webdesign /index.html 200
-/webdesign/* /index.html 200
+# SPA routing - serve index.html for page routes only
 /projects /index.html 200
-/projects/* /index.html 200
+/about /index.html 200
+/webdesign /index.html 200
 /graphic /index.html 200
-/graphic/* /index.html 200
 /faq /index.html 200
-/faq/* /index.html 200
 
-# Catch-all fallback for SPA routing
-/* /index.html 200
+# Root fallback only
+/ /index.html 200
