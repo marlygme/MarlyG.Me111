@@ -10,8 +10,13 @@
 /favicon.ico 200
 /sorry.html 200
 
-# API routes (if any) - add specific routes here
-# /api/* 200
+# SPA routes - all page navigation should serve index.html
+/about/* /index.html 200
+/webdesign/* /index.html 200
+/projects/* /index.html 200
+/projects/radio/* /index.html 200
+/graphic/* /index.html 200
+/faq/* /index.html 200
 
-# All other routes - serve index.html for SPA routing
+# Root and all other routes - serve index.html for SPA routing
 /* /index.html 200

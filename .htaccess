@@ -15,14 +15,18 @@ RewriteEngine On
 RewriteBase /
 
 # Handle static assets - serve directly
-RewriteCond %{REQUEST_URI} ^/(dist|img|videos)/
+RewriteCond %{REQUEST_URI} ^/(dist|img|videos|robots\.txt|sitemap\.xml|favicon\.ico|sorry\.html)/
 RewriteRule .* - [L]
+
+# Handle SPA routes - all page navigation serves index.html
+RewriteCond %{REQUEST_URI} ^/(about|webdesign|projects|graphic|faq)
+RewriteRule .* /index.html [QSA,L]
 
 # Handle root path
 RewriteCond %{REQUEST_URI} ^/?$
 RewriteRule ^/?$ index.html [QSA,L]
 
-# SPA routing - all other requests serve index.html
+# SPA routing fallback - all other requests serve index.html
 RewriteCond %{REQUEST_URI} !^/(dist|img|videos)/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
