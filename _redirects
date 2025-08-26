@@ -12,11 +12,17 @@
 
 # SPA routes - all page navigation should serve index.html
 /about/* /index.html 200
+/about /index.html 200
 /webdesign/* /index.html 200
+/webdesign /index.html 200
 /projects/* /index.html 200
+/projects /index.html 200
 /projects/radio/* /index.html 200
+/projects/radio /index.html 200
 /graphic/* /index.html 200
+/graphic /index.html 200
 /faq/* /index.html 200
+/faq /index.html 200
 
 # Root and all other routes - serve index.html for SPA routing
 /* /index.html 200

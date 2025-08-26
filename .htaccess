@@ -19,7 +19,7 @@ RewriteCond %{REQUEST_URI} ^/(dist|img|videos|robots\.txt|sitemap\.xml|favicon\.
 RewriteRule .* - [L]
 
 # Handle SPA routes - all page navigation serves index.html
-RewriteCond %{REQUEST_URI} ^/(about|webdesign|projects|graphic|faq)
+RewriteCond %{REQUEST_URI} ^/(about|webdesign|projects|graphic|faq)(/.*)?$
 RewriteRule .* /index.html [QSA,L]
 
 # Handle root path
