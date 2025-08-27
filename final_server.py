@@ -4,8 +4,22 @@ import socketserver
 import urllib.parse
 import sys
 import time
+import os
+import json
 
 PORT = 5000
+
+def get_firebase_config():
+    """Get Firebase configuration from environment variables"""
+    return {
+        'apiKey': os.environ.get('FIREBASE_API_KEY', ''),
+        'authDomain': os.environ.get('FIREBASE_AUTH_DOMAIN', ''),
+        'projectId': os.environ.get('FIREBASE_PROJECT_ID', ''),
+        'storageBucket': os.environ.get('FIREBASE_STORAGE_BUCKET', ''),
+        'messagingSenderId': os.environ.get('FIREBASE_MESSAGING_SENDER_ID', ''),
+        'appId': os.environ.get('FIREBASE_APP_ID', ''),
+        'databaseURL': f"https://{os.environ.get('FIREBASE_PROJECT_ID', '')}-default-rtdb.firebaseio.com" if os.environ.get('FIREBASE_PROJECT_ID') else ''
+    }
 
 class SPAHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
@@ -24,6 +38,17 @@ class SPAHandler(http.server.SimpleHTTPRequestHandler):
         super().end_headers()
     def do_GET(self):
         path = urllib.parse.urlparse(self.path).path
+        
+        # Serve dynamic Firebase config
+        if path == '/dist/env-config.js':
+            config = get_firebase_config()
+            content = f"window.firebaseConfig = {json.dumps(config)};"
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/javascript')
+            self.send_header('Content-Length', str(len(content)))
+            self.end_headers()
+            self.wfile.write(content.encode('utf-8'))
+            return
         
         # Remove trailing slash
         if path != '/' and path.endswith('/'):

@@ -26,21 +26,23 @@
     }
 
     function setupFirebase() {
-        // Use the hardcoded configuration since environment variables aren't available in browser
-        const firebaseConfig = {
-            apiKey: "AIzaSyCEld9NHZArU4O0R4Mo_K5uJ6WiPVBTbp8",
-            authDomain: "marlyg-5214402.firebaseapp.com",
-            databaseURL: "https://marlyg-5214402-default-rtdb.firebaseio.com",
-            projectId: "marlyg-5214402",
-            storageBucket: "marlyg-5214402.appspot.com",
-            messagingSenderId: "1077693372818",
-            appId: "1:1077693372818:web:3a9b8c5d6e7f9a2b4c3d21"
-        };
+        // Use window.firebaseConfig which is loaded from env-config.js
+        if (!window.firebaseConfig) {
+            console.error('[Firebase] Configuration not found! Waiting...');
+            setTimeout(setupFirebase, 100);
+            return;
+        }
+
+        const firebaseConfig = window.firebaseConfig;
 
         // Initialize Firebase if not already initialized
         if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-            console.log('[Firebase] Initialized successfully');
+            try {
+                firebase.initializeApp(firebaseConfig);
+                console.log('[Firebase] Initialized successfully with config:', firebaseConfig.projectId);
+            } catch (error) {
+                console.error('[Firebase] Initialization error:', error);
+            }
         } else {
             console.log('[Firebase] Already initialized');
         }
