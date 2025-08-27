@@ -26,6 +26,10 @@ class SPAHandler(http.server.SimpleHTTPRequestHandler):
         spa_routes = ('/', '/about', '/webdesign', '/projects', '/graphic', '/faq')
         spa_prefixes = ('/about/', '/webdesign/', '/projects/', '/graphic/', '/faq/')
         
+        # Handle all other routes that aren't static files
+        if path.startswith('/') and path not in static_files and not any(path.startswith(prefix) for prefix in static_prefixes):
+            self.path = '/index.html'
+        
         if path in spa_routes or any(path.startswith(prefix) for prefix in spa_prefixes):
             self.path = '/index.html'
         
