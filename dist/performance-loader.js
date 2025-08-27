@@ -102,11 +102,7 @@
         });
     };
     
-    // Run optimizations when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', window.optimizeImageLoading);
-    } else {
-        window.optimizeImageLoading();
-    }
+    // Image optimization handled by image-optimizer.js now
+    // Just ensure scripts are loaded efficiently
     
 })();

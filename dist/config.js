@@ -16,10 +16,11 @@ window.RM.videoBaseURL = "/videos/";
 
 // Firebase configuration for radio player
 window.firebaseConfig = {
-  apiKey: typeof FIREBASE_API_KEY !== 'undefined' ? FIREBASE_API_KEY : "AIzaSyCEld9NHZArU4O0R4Mo_K5uJ6WiPVBTbp8",
-  authDomain: typeof FIREBASE_AUTH_DOMAIN !== 'undefined' ? FIREBASE_AUTH_DOMAIN : "marlyg-5214402.firebaseapp.com",
-  projectId: typeof FIREBASE_PROJECT_ID !== 'undefined' ? FIREBASE_PROJECT_ID : "marlyg-5214402",
-  storageBucket: typeof FIREBASE_STORAGE_BUCKET !== 'undefined' ? FIREBASE_STORAGE_BUCKET : "marlyg-5214402.appspot.com",
-  messagingSenderId: typeof FIREBASE_MESSAGING_SENDER_ID !== 'undefined' ? FIREBASE_MESSAGING_SENDER_ID : "123456789",
-  appId: typeof FIREBASE_APP_ID !== 'undefined' ? FIREBASE_APP_ID : "1:123456789:web:abcdef123456"
+  apiKey: "AIzaSyCEld9NHZArU4O0R4Mo_K5uJ6WiPVBTbp8",
+  authDomain: "marlyg-5214402.firebaseapp.com",
+  databaseURL: "https://marlyg-5214402-default-rtdb.firebaseio.com",
+  projectId: "marlyg-5214402",
+  storageBucket: "marlyg-5214402.appspot.com",
+  messagingSenderId: "1077693372818",
+  appId: "1:1077693372818:web:3a9b8c5d6e7f9a2b4c3d21"
 };
