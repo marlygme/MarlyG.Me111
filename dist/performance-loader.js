@@ -55,21 +55,51 @@
         }
     };
     
-    // Optimize image loading
+    // Advanced image optimization
     window.optimizeImageLoading = function() {
-        const images = document.querySelectorAll('img[data-src]');
+        // Preload critical images immediately
+        const criticalImages = document.querySelectorAll('img');
         const imageObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                    }
                     imageObserver.unobserve(img);
                 }
             });
+        }, {
+            rootMargin: '50px' // Start loading 50px before image is visible
         });
         
-        images.forEach(img => imageObserver.observe(img));
+        // Progressive enhancement for all images
+        criticalImages.forEach((img, index) => {
+            if (img.dataset.src) {
+                imageObserver.observe(img);
+            } else if (img.src && !img.complete) {
+                // Preload first 5 images immediately
+                if (index < 5) {
+                    const preloadLink = document.createElement('link');
+                    preloadLink.rel = 'preload';
+                    preloadLink.as = 'image';
+                    preloadLink.href = img.src;
+                    document.head.appendChild(preloadLink);
+                }
+            }
+        });
+        
+        // Add loading states
+        criticalImages.forEach(img => {
+            if (!img.complete) {
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.3s ease';
+                img.onload = function() {
+                    this.style.opacity = '1';
+                };
+            }
+        });
     };
     
     // Run optimizations when DOM is ready

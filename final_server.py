@@ -9,18 +9,18 @@ PORT = 5000
 
 class SPAHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
-        # Add performance headers
+        # Add performance headers (without compression)
         if self.path.endswith('.js'):
-            self.send_header('Cache-Control', 'public, max-age=31536000')
+            self.send_header('Cache-Control', 'public, max-age=31536000, immutable')
         elif self.path.endswith(('.png', '.jpg', '.gif', '.webp')):
-            self.send_header('Cache-Control', 'public, max-age=31536000')
+            self.send_header('Cache-Control', 'public, max-age=31536000, immutable')
         elif self.path.endswith('.css'):
-            self.send_header('Cache-Control', 'public, max-age=31536000')
+            self.send_header('Cache-Control', 'public, max-age=31536000, immutable')
+        elif self.path.endswith(('.mp4', '.m3u8', '.ts')):
+            self.send_header('Cache-Control', 'public, max-age=86400')
         else:
             self.send_header('Cache-Control', 'public, max-age=3600')
         
-        # Enable compression hint
-        self.send_header('Vary', 'Accept-Encoding')
         super().end_headers()
     def do_GET(self):
         path = urllib.parse.urlparse(self.path).path
